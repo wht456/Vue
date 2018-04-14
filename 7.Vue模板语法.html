@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue模板编辑器</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-text="name + ' Lee'"></div>
+		<div v-html="name + ' Lee'"></div>
+		<!-- {{}}效果和v-text类似 -->
+		<div>{{name2+' Lee'}}</div>
+		<div v-text="name2"></div>
+		<div v-html="name2"></div>
+	</div>
+	<script>
+		var vm=new Vue({
+			el: '#app',
+			data:{
+				name:'hello2',
+				name2:'<h1>html效果</h1>'
+			}
+		})
+	</script>
+</body>
+</html>

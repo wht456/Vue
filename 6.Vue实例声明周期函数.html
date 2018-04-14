@@ -11,7 +11,10 @@
 		// 声明周期函数就是Vue实例在某一个事件点会自动执行的函数
 		var vm = new Vue({
 			el:'#app',
-			template:'<div>hello world</div>',
+			template:'<div>{{test}}</div>',
+			data:{
+				test:'hello world2',
+			},
 			beforeCreate:function(){
 				console.log('beforeCreate');
 			},
@@ -20,9 +23,37 @@
 			},
 			// 模板和数据相结合之前 
 			beforeMount:function(){
-
+				console.log(this.$el);
+				console.log('beforeMount');
 			},
 			mounted:function(){
+				console.log(this.$el);
+				console.log('mount');
+			},
+			// 销毁之前
+			beforeDestroy:function(){
+				console.log('beforeDestroy');
+			},
+			// 销毁之后
+			destroyed:function(){
+				console.log('destroy');
+			},
+			// 数据改变之后,渲染之前执行
+			beforeUpdate:function(){
+				console.log('beforeUpdate');
+			},
+			// 渲染之后执行
+			updated:function(){
+				console.log('updated');
+			},
+			// 还有三个函数
+			activated:function(){
+
+			},
+			deactivated:function(){
+
+			},
+			errorCaptured:function(){
 				
 			}
 		})
