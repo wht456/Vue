@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TodoList全局组件<title>
+	<script src="vue.js"></script>
+	<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<!-- MV VM模式 -->
+	<!-- 	Model:Plain JavaScript Objects
+			View:DOM
+			ViewModel:DOM Listeners/Data Bindings-Vue
+	 -->
+	<div id="app">
+		<input type="text" v-model="inputValue">
+		<button v-on:click="handleBtnClick">提交</button>
+		<ul>
+			<!-- list赋值给item,item通过v-bind传给todo-item,通过content变量传-->
+			<todo-item 
+				v-bind:content="item" 
+				v-for="item in list">
+			</todo-item>		
+		</ul>
+	</div>
+
+	
+
+	<script>
+		// 创建全局组件,名字为TodoItem,模板template,用模板的时候标签就为todo-item(驼峰命名加横线)
+		Vue.component('TodoItem',{
+			// 从父组件接收content参数,content就是item,item就是list中的值
+			props:['content'],
+			template:'<li>{{content}}</li>'
+		});
+
+		var app=new Vue({
+			// el是vue接管的区域
+			el:'#app',
+			data:{
+				list:[],
+				inputValue:''
+			},
+			methods:{
+				handleBtnClick:function(){
+					this.list.push(this.inputValue);
+					this.inputValue='';
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

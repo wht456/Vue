@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello World</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<!-- old -->
+	<div id="app1-1"></div>
+
+	<!-- new -->
+	<!-- {{}}叫差值表达式调用data里的数据 -->
+	<div id="app2-1">{{conten}}</div>
+
+	<script>
+		// old
+		var dom=document.getElementById('app1-1');
+		dom.innerHTML='Hello World';
+		setTimeout(function(){
+			dom.innerHTML='bye world'
+		},2000);
+
+		// new
+		// el的属性选择#app2,由Vue实例接管了div#app2里所有的内容,el限制一个Vue实例接管的范围
+		var app=new Vue({
+			el:'#app2-1',
+			data:{
+				conten:'hello world2',
+			},
+		});
+		setTimeout(function(){
+			app.$data.conten='bye world2';
+		},2000)
+	</script>
+</body>
+</html>

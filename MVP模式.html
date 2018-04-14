@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MVP模式</title>
+	<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<!-- MVP模式 -->
+	<!-- M模型层没有,V是div的那些,P是控制器 -->
+	<div>
+		<input type="text" id="input">
+		<button id="btn">提交</button>
+		<ul id="list"></ul>
+	</div>
+
+	<script>
+		function Page(){
+
+		}
+		$.extend(Page.prototype,{
+			init:function(){
+				this.bindEvents();
+			},
+			bindEvents:function(){
+				var btn=$('#btn');
+				// $.proxy将handleBtnClick的this绑定为Page实例的this
+				btn.on('click',$.proxy(this.handleBtnClick,this));
+			},
+			handleBtnClick:function(){
+				var inputElem=$('#input');
+				var inputValue=inputElem.val();
+				var ulElem=$('#list');
+				ulElem.append('<li>'+inputValue+'</li>');
+				inputElem.val('');
+			}
+		});
+		var page=new Page();
+		page.init();
+	</script>
+</body>
+</html>

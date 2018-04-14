@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TodoList局部组件</title>
+	<script src="vue.js"></script>
+	<script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<!-- MV VM模式 -->
+	<!-- 	Model:Plain JavaScript Objects
+			View:DOM
+			ViewModel:DOM Listeners/Data Bindings-Vue
+	 -->
+	<div id="app">
+		<input type="text" v-model="inputValue">
+		<button v-on:click="handleBtnClick">提交</button>
+		<ul>
+			<!-- list赋值给item,item通过v-bind传给todo-item,通过content变量传-->
+			<aaa 
+				v-bind:content="item" 
+				v-for="item in list">
+			</aaa>		
+		</ul>
+	</div>
+
+	
+
+	<script>
+		// 创建局部组件,名字为bbb,将bbb赋值给aaa模板,调用模板aaa,用模板的时候标签就为aaa(驼峰命名加横线)
+		
+		var bbb={
+			props:['content'],
+			// template:模板;样板
+			template:'<li>{{content}}</li>'
+		}
+
+		var app=new Vue({
+			// el是vue接管的区域
+			el:'#app',
+			components:{
+				aaa:bbb,
+			},
+			data:{
+				list:[],
+				inputValue:''
+			},
+			methods:{
+				handleBtnClick:function(){
+					this.list.push(this.inputValue);
+					this.inputValue='';
+				}
+			}
+		});
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue实例声明周期函数</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script>
+		// 声明周期函数就是Vue实例在某一个事件点会自动执行的函数
+		var vm = new Vue({
+			el:'#app',
+			template:'<div>hello world</div>',
+			beforeCreate:function(){
+				console.log('beforeCreate');
+			},
+			create:function(){
+				console.log('create');
+			},
+			// 模板和数据相结合之前 
+			beforeMount:function(){
+
+			},
+			mounted:function(){
+				
+			}
+		})
+	</script>
+</body>
+</html>
