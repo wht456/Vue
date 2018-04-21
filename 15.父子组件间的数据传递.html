@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>15.父子组件间的数据传递</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 父组件通过属性的方式向子组件传值 -->
+		<counter :count="2" @change="handleIncrease"></counter>
+		<counter :count="3" @change="handleIncrease"></counter>
+		<div>{{total}}</div>
+	</div>
+	<script type="text/javascript">
+		
+		// 父子组件有单向数据流的规定,父组件可以向子组件传递任何数据,子组件不能修改父组件传过来的数据,除非拷贝一个副本,修改副本即可
+		var counter = {
+			// 用props接收父组件传过来的参数
+			props: ['count'],
+			// 子组件的data必须是一个函数,并且返回一个对象
+			data: function(){
+				return {
+					number: this.count
+				}
+			},
+			template: '<div @click="handleClick">{{number}}</div>',
+			methods: {
+				handleClick: function(){
+					this.number++;
+					// 子组件在点击时触发change事件,并且向外传递一个参数
+					// 子组件通过事件触发的形式向父组件传值
+					this.$emit('change',1)//
+				}
+			}
+		}
+
+		var vm = new Vue({
+			el: '#app',
+			components: {
+				counter: counter
+			},
+			data: {
+				total: 5
+			},
+			methods: {
+				// 监听handleIncrease事件,并且接受一个step事件
+				handleIncrease: function(step){
+					this.total += step;
+				}
+			}
+		});
+		
+	</script>
+</body>
+</html>

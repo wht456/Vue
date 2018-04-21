@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>16.组件参数校验与非props</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<child content="helloa"></child>
+	</div>
+
+	<script>
+		// 非props特性:
+		// 如果子组件没有定义,父组件就引用就会报错
+		// 如果子组件没有定义属性值就会展示到DOM标签上
+		Vue.component('child', {
+			props: {
+				content: {
+					type: String,
+					default: 'default value',
+					required: false,
+					validator: function(value){
+						return (value.length>5);
+					}
+				}
+			},
+			template: '<div>{{content}}</div>'
+		});
+
+		var vm = new Vue({
+			el: '#root'
+		})
+	</script>
+</body>
+</html>

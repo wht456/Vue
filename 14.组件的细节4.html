@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>14.组件的使用细节4</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- 当子组件触发change事件时就触发handleChange函数 -->
+		<!-- 引用的名字为one,和two -->
+		<counter @change="handleChange" ref="one"></counter>
+		<counter @change="handleChange" ref="two"></counter>
+		<div>{{total}}</div>
+	</div>
+	<script type="text/javascript">
+		Vue.component('counter',{
+			// 当模板触发点击事件时就触发handleClick函数
+			template: '<div @click="handleClick">{{number}}</div>',
+			data: function(){
+				return {
+					number: 0,
+				}
+			},
+			methods: {
+				handleClick: function(){
+					this.number++;
+					// 子组件被点击的时候触发change事件
+					this.$emit('change');
+				}
+			}
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				total: 0
+			},
+			methods: {
+				handleChange: function(){
+					this.total = this.$refs.one.number + this.$refs.two.number;
+				}
+			}
+		});
+		
+	</script>
+</body>
+</html>

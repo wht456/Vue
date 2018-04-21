@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>19.Vue插槽(slot)</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<child>
+			<h5>如果没有这个h1就会显示slot里的内容</h5>
+			<div class="header" slot="header">header</div>
+			<div class="footer" slot="footer">footer</div>
+		</child>
+	</div>
+	<script>
+
+		// slot是模板内的所有内容
+		Vue.component('child', {
+			props: ['content'],
+			template: `	<div>
+							<slot>现在没有h1标签了</slot>
+							<slot name="header">默认内容</slot>
+							<div class="content">content</div>
+							<slot name="footer">默认内容</slot>
+						</div>`
+		})
+
+		var vm=new Vue({
+			el: "#app",
+			
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13.Vue中的Set方法</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-for="(item,index) of userInfo">
+			{{item}}--{{index}}
+		</div>
+	</div>
+	<script>
+		// set方法可以直接操作数组
+
+		var vm=new Vue({
+			el: "#app",
+			data:{
+				userInfo: [1,2,3,4]
+			}
+		});
+		// Vue.set(vm.userInfo,1,'下标为1的改了')
+		// vm.$set(vm.userInfo,2,'下标为2的改了');
+	</script>
+</body>
+</html>

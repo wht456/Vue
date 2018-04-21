@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10.Vue样式绑定</title>
+	<script src="vue.js"></script>
+	<style>
+		.activated {
+			color:red;
+		}
+		.activated2 {
+			color:blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- div上有个class,名字是activated,是否显示取决于isActivated变量,
+		样例:<div @click="handleDivClick":class="{activated:true}">{{msg}}</div>,
+		效果:<div class="activated">hello world</div>,
+		样例:<div @click="handleDivClick":class="{activated:false}">{{msg}}</div>,
+		效果:<div class="">hello world</div>,
+		-->
+		<div @click="handleDivClick"
+			 :class="{activated:isActivated}"	
+		>{{msg}}</div>
+
+		<!-- 效果:<div class="">hello world</div> -->
+		<div @click="handleDivClick2"
+			 :class="[activated2]"	
+		>{{msg}}</div>
+
+		<!-- 效果:<div class="activated2 activated-one">hello world</div> -->
+		<div @click="handleDivClick2"
+			 :class="[activated3,activated4]"	
+		>{{msg}}</div>
+
+		<!-- sytle -->
+		<div :style="styleObj" @click="handleDivClick3">hello</div>
+		<div :style="[styleObj,{fontSize:'23px'}]" @click="handleDivClick3">hello</div>
+	</div>
+	<script>
+		var vm=new Vue({
+			el: "#app",
+			data:{
+				isActivated:false,
+				msg:'hello world',
+				activated2:'',
+				activated3:'activated2',
+				activated4:'activated-one',
+				styleObj:{
+					color:'red',
+				}
+			},
+			methods:{
+				handleDivClick:function(){
+					this.isActivated=!this.isActivated;
+				},
+				handleDivClick2:function(){
+					// if(this.activated2==="activated2"){
+					// 	this.activated2='';
+					// }else {
+					// 	this.activated2='activated2';
+					// }
+					// 等价于
+					this.activated2 = this.activated2 === 'activated2' ? '' : 'activated2'
+				},
+				handleDivClick3:function(){
+					this.styleObj.color=this.styleObj.color==="red"?"black":"red";
+				},
+			},
+		})
+	</script>
+</body>
+</html>

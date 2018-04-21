@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20.作用域插槽</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<child>
+			<template slot-scope="props">
+				<li>{{props.item}}--hello</li>
+			</template>
+		</child>
+	</div>
+	<script>
+
+		// slot是模板内的所有内容
+		Vue.component('child', {
+			data: function() {
+				return {
+					list: [1,2,3,4]
+				}
+			},
+			template: `	<div>
+							<ul>
+								<slot 
+									v-for="item of list"
+									:item=item
+								>
+								</slot>
+							</ul>
+						</div>`
+		})
+
+		var vm=new Vue({
+			el: "#app",
+			
+		});
+
+	</script>
+</body>
+</html>

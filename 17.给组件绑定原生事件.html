@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>17.给组件绑定原生事件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+	<div id="root">
+		<child @click="handleClick"></child>
+	</div>
+
+	<div id="root2">
+		<child @click.native="handleClick"></child>
+	</div>
+
+	<script>
+		// 在组件上绑定的事件为自定义事件
+		// 在组件中绑定的事件为原生事件
+		// 触发逻辑:先在模板中绑定原生事件,并且当原生事件触发时触发一个自定义的事件,并且向外传播$emit,当父组件接收到$emit的事件时在触发一个事件,让子组件去监听
+		// Vue.component('child',{
+		// 	template: '<div @click="handleClick">Child</div>',
+		// 	methods: {
+		// 		handleClick: function() {
+		// 			this.$emit('click');
+		// 		}
+		// 	}
+		// })
+
+		// var vm = new Vue({
+		// 	el: "#root",
+		// 	methods: {
+		// 		handleClick: function() {
+		// 			alert('test');
+		// 		}
+		// 	}
+		// });
+
+		// 新写法
+		Vue.component('child',{
+			template: '<div>Child</div>'
+		})
+		var vm = new Vue({
+			el: "#root2",
+			methods: {
+				handleClick: function() {
+					alert('我是一个原生事件');
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

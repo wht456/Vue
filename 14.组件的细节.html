@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>14.组件的使用细节</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<table>
+			<tbody>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<ul>
+					<li is="row"></li>
+					<li is="row"></li>
+					<li is="row"></li>
+				</ul>
+				<select>
+					<option is="row"></option>
+					<option is="row"></option>
+					<option is="row"></option>
+				</select>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		Vue.component('row',{
+			template:'<tr><td>this is a row</td></tr>'
+		})
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				
+			}
+		});
+		
+	</script>
+</body>
+</html>

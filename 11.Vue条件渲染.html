@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11.Vue条件渲染</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-if="show==='a'">{{msg1}}</div>
+		<div v-else-if="show==='b'">{{msg2}}</div>
+		<div v-else>Bye World</div>
+	</div>
+	<script>
+		var vm=new Vue({
+			el: "#app",
+			data:{
+				// show:false,
+				show:'a',
+				msg1:'hello world A',
+				msg2:'hello world B',
+			}
+		})
+	</script>
+</body>
+</html>

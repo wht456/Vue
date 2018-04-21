@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.div {
+			position:relative;
+			border:1px solid blue;
+			height:800px;
+		}
+		#div1 {
+			border:1px solid red;
+			height:100px;
+		}
+		#div2 {
+			border:1px solid black;
+			position:absolute;
+			width:100%-1px;
+			top:102px;
+			bottom:0px;
+			left:0;
+			right:0;
+			
+		}
+	</style>
+</head>
+<body>
+
+	<div class="div">
+		<div id="div1">
+			<a href="#">a</a>
+			<span>span</span>
+			<img src="" alt="img" title="hehe">
+			<input type="text">
+			<select name="" id=""></select>
+		</div>
+		<ul>
+			<li>ul>li</li>
+		</ul>
+		<ol>
+			<li>ol>li</li>
+		</ol>
+		<dl>
+			<dt>dt</dt>
+			<dd>dd</dd>
+		</dl>
+		<h1>h1</h1>
+		<p>p</p>
+		<div id="div2"></div>
+
+	</div>
+	<script>
+		var arr=[[1,2],[3,4],[5,6,7]];
+function Jw(obj){
+     return Array.prototype.concat.apply([],obj);
+}
+console.log(Jw(arr));
+
+var data={a:1,b:2,c:3};
+function toArr(obj){
+           var arr1=[];
+           for(var i in obj){
+               arr1.push(i+':'+obj[i]);
+           }
+           return arr1;
+           // arr1.fitter(function(x){console.log(arr1(x))});
+}
+console.log(toArr(data));
+	</script>
+</body>
+</html>

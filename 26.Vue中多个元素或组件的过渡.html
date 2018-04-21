@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>26.Vue中多个元素或组件的过渡</title>
+	<link rel="stylesheet" href="animate.css">
+	<script src="vue.js"></script>
+	<script src="velocity.min.js"></script>
+<body>
+	<div id="app">
+		<transition>
+			<div v-if="show">hello world</div>
+			<div v-else>Bye world</div>
+		</transition>
+		<button @click="handleClick">切换</button>
+	</div>
+	<script>
+
+		var vm=new Vue({
+			el: "#app",
+			data: {
+				show: true,
+			},
+			methods: {
+				handleClick: function() {
+					this.show = !this.show;
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>

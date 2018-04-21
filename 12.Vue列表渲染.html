@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12.Vue列表渲染</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- <div v-for="(item,index) of list" 
+			 :key="item.id">
+			{{item.text}}---{{index}}
+		</div>
+		<span v-for="(item,index) of list">
+			{{item.text}}
+		</span> -->
+
+		<!-- 等价于 -->
+		<!-- <div v-for="(item,index) of list"
+			 :key="item.id">
+			<div>
+				{{item.text}}---{{index}}
+			</div>
+			<span>
+				{{item.text}}
+			</span>
+		</div> -->
+
+		<!-- 等价于 template模板占位符 -->
+		<template v-for="(item,index) of list"
+			 :key="item.id">
+			<div>
+				{{item.text}}---{{index}}
+			</div>
+			<span>
+				{{item.text}}
+			</span>
+		</template>
+	</div>
+	<script>
+		// push pop shift unshift splice sort reverse
+		var vm=new Vue({
+			el: "#app",
+			data:{
+				list:[
+					{
+						id:'010120230',
+						text:'hello'
+					},
+					{
+						id:'010120231',
+						text:'world'
+					},
+					{
+						id:'010120232',
+						text:'Dell'
+					},
+					{
+						id:'010120234',
+						text:'Tom'
+					},
+				]
+			}
+		})
+	</script>
+</body>
+</html>

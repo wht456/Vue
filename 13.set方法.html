@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>13.set方法</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div v-for="(item,key) of userInfo">{{item}}----{{key}}</div>
+	</div>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				userInfo:{
+					name: "dell",
+					age: 28
+				}
+			}
+		});
+		// 使用set修改属性
+		vm.$set(vm.userInfo,'name','dell2');
+		vm.$set(vm.userInfo,'address','Beijing');
+		Vue.set(vm.userInfo,'name','dell3');
+	</script>
+</body>
+</html>

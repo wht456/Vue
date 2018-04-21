@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>23.Vue中CSS动画原理2</title>
+	<link rel="stylesheet" href="animate.css">
+	<script src="vue.js"></script>
+<body>
+	<div id="app">
+		<!-- <transition name="fade">
+			<div v-show="show">Hello World</div>
+		</transition> -->
+
+		<!-- 等价于 -->
+		<transition 
+			name="fade" 
+			enter-active-class="animated swing"
+			leave-active-class="animated shake"
+		>
+			<div v-show="show">Hello World</div>
+		</transition>
+		<button @click="handleClick">toggle</button>
+	</div>
+	<script>
+
+		var vm=new Vue({
+			el: "#app",
+			data: {
+				show: true,
+			},
+			methods: {
+				handleClick: function() {
+					this.show = !this.show;
+				}
+			}
+		});
+
+	</script>
+</body>
+</html>
